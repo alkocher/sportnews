@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/category_football"
+        android:title="@string/football"
+        app:showAsAction="never"
+        android:orderInCategory="100"
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/category_hockey"
+        android:title="@string/hockey"
+        app:showAsAction="never"
+        android:orderInCategory="100"/>
+
+    <item
+        android:id="@+id/category_tennis"
+        android:title="@string/tennis"
+        app:showAsAction="never"
+        android:orderInCategory="100"/>
+
+    <item
+        android:id="@+id/category_basketball"
+        android:title="@string/basketball"
+        app:showAsAction="never"
+        android:orderInCategory="100"/>
+
+    <item
+        android:id="@+id/category_volleyball"
+        android:title="@string/volleyball"
+        app:showAsAction="never"
+        android:orderInCategory="100"/>
+
+    <item
+        android:id="@+id/category_cybersport"
+        android:title="@string/cybersport"
+        app:showAsAction="never"
+        android:orderInCategory="100"/>
+
+</menu>

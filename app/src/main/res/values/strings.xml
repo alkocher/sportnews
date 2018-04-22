@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Sport News</string>
+    <string name="title">Title</string>
+    <string name="coefficient">Coefficient</string>
+    <string name="time">Time</string>
+    <string name="place">Place</string>
+    <string name="preview_text">Preview Text</string>
+    <string name="football">Football</string>
+    <string name="hockey">Hockey</string>
+    <string name="cybersport">Cybersport</string>
+    <string name="volleyball">Volleyball</string>
+    <string name="basketball">Basketball</string>
+    <string name="tennis">Tennis</string>
+    <string name="team_1">Team 1</string>
+    <string name="team_2">Team 2</string>
+    <string name="tournament">Tournament</string>
+    <string name="header_1">Header 1</string>
+    <string name="article_1">Article 1</string>
+    <string name="header_2">Header 2</string>
+    <string name="article_2">Article 2</string>
+    <string name="header_3">Header 3</string>
+    <string name="article_3">Article 3</string>
+    <string name="article">Article</string>
+    <string name="header">Header</string>
+    <string name="image">Image</string>
+    <string name="prediction">Prediction</string>
+    <string name="predictions">Прогноз</string>
+</resources>

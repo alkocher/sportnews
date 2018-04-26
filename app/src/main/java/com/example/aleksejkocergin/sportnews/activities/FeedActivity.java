@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -34,7 +36,7 @@ public class FeedActivity extends AppCompatActivity implements IFeedView {
 
     private FeedAdapter mAdapter;
     private IFeedPresenter presenter;
-    private String category = "football";
+    private String CATEGORY = "football";
 
     @BindView(R.id.feed_recycler_view)
     RecyclerView mRecyclerView;
@@ -46,6 +48,10 @@ public class FeedActivity extends AppCompatActivity implements IFeedView {
     Toolbar toolbar;
     @BindView(R.id.image_view)
     ImageView imageCategories;
+    @BindView(R.id.feedCoordinatorLayout)
+    CoordinatorLayout coordinatorLayout;
+    @BindView(R.id.refresh_layout)
+    SwipeRefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,21 +59,8 @@ public class FeedActivity extends AppCompatActivity implements IFeedView {
         setContentView(R.layout.activity_feed);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-
-        ConnectivityManager connectivityManager = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = null;
-
-        if (connectivityManager != null) {
-            networkInfo = connectivityManager.getActiveNetworkInfo();
-        }
-
-        if (networkInfo != null && networkInfo.isConnected()){
-            if (presenter == null) presenter = new FeedPresenter(this);
-                presenter.getSportNewsData(false, category);
-        } else {
-            showNoConnectionMessage();
-        }
+        refreshLayout.setOnRefreshListener(this::initialize);
+        initialize();
     }
 
     @Override
@@ -80,34 +73,26 @@ public class FeedActivity extends AppCompatActivity implements IFeedView {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.category_football:
-                category = "football";
-                imageCategories.setImageResource(R.drawable.football_image);
-                presenter.getSportNewsData(false, category);
+                CATEGORY = "football";
                 break;
             case R.id.category_hockey:
-                category = "hockey";
-                imageCategories.setImageResource(R.drawable.hockey_image);
-                presenter.getSportNewsData(false, category);
+                CATEGORY = "hockey";
                 break;
             case R.id.category_tennis:
-                category = "tennis";
-                imageCategories.setImageResource(R.drawable.tennis_image);
-                presenter.getSportNewsData(false, category);
+                CATEGORY = "tennis";
+                break;
+            case R.id.category_basketball:
+                CATEGORY = "basketball";
                 break;
             case R.id.category_volleyball:
-                category = "volleyball";
-                imageCategories.setImageResource(R.drawable.volleyball_image);
-                presenter.getSportNewsData(false, category);
+                CATEGORY = "volleyball";
                 break;
             case R.id.category_cybersport:
-                category = "cybersport";
-                imageCategories.setImageResource(R.drawable.cybersport);
-                presenter.getSportNewsData(false, category);
+                CATEGORY = "cybersport";
                 break;
-            default:
-                presenter.getSportNewsData(false, category);
         }
-        collapsingToolbar.setTitle(category);
+        collapsingToolbar.setTitle(CATEGORY);
+        if (isOnline()) presenter.getSportNewsData(false, CATEGORY);
         return super.onOptionsItemSelected(item);
     }
 
@@ -145,8 +130,37 @@ public class FeedActivity extends AppCompatActivity implements IFeedView {
         Toast.makeText(this, "Error connection", Toast.LENGTH_LONG).show();
     }
 
+    private boolean isOnline() {
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = null;
+        if (connectivityManager != null) {
+            networkInfo = connectivityManager.getActiveNetworkInfo();
+        }
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+    }
+
     @Override
     public void setEmptyResponseText(String text) {
 
+    }
+
+    @Override
+    public void hideRefreshLayout() {
+        refreshLayout.setRefreshing(false);
+    }
+
+    private void initialize() {
+        if (isOnline()){
+            if (presenter == null) presenter = new FeedPresenter(this);
+            presenter.getSportNewsData(false, CATEGORY);
+        } else {
+            showNoConnectionMessage();
+        }
+
+        refreshLayout.setColorSchemeResources(
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 }

@@ -36,22 +36,16 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-"/>
-
-                <TextView
-                    android:id="@+id/team2_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/team_2"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_toEndOf="@+id/team1_text"/>
+        <TextView
+            android:id="@+id/team2_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/team1_text"
+            android:layout_marginStart="-8dp"
+            android:layout_toEndOf="@+id/team1_text"
+            android:text="@string/team_2"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/time_text"

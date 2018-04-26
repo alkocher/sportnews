@@ -76,21 +76,27 @@ public class FeedActivity extends AppCompatActivity implements IFeedView {
         switch (item.getItemId()) {
             case R.id.category_football:
                 CATEGORY = "Football";
+                imageCategories.setImageResource(R.drawable.image_football);
                 break;
             case R.id.category_hockey:
                 CATEGORY = "Hockey";
+                imageCategories.setImageResource(R.drawable.image_hockey);
                 break;
             case R.id.category_tennis:
                 CATEGORY = "Tennis";
+                imageCategories.setImageResource(R.drawable.image_tennis);
                 break;
             case R.id.category_basketball:
                 CATEGORY = "Basketball";
+                imageCategories.setImageResource(R.drawable.image_basketball);
                 break;
             case R.id.category_volleyball:
                 CATEGORY = "Volleyball";
+                imageCategories.setImageResource(R.drawable.image_volleyball);
                 break;
             case R.id.category_cybersport:
                 CATEGORY = "Cybersport";
+                imageCategories.setImageResource(R.drawable.image_cybersport);
                 break;
         }
         collapsingToolbar.setTitle(CATEGORY);
@@ -160,7 +166,7 @@ public class FeedActivity extends AppCompatActivity implements IFeedView {
     private void initialize() {
         if (isOnline()){
             if (presenter == null) presenter = new FeedPresenter(this);
-            presenter.getSportNewsData(false, CATEGORY);
+            presenter.getSportNewsData(false, CATEGORY.toLowerCase());
         } else {
             showNoConnectionMessage();
         }

@@ -11,5 +11,6 @@ public interface IFeedView {
     void hideLoadingIndicator();
     void showNoConnectionMessage();
     void setEmptyResponseText(String text);
-
+    void hideRefreshLayout();
+    void showContent();
 }

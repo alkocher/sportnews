@@ -33,6 +33,8 @@ public class FeedPresenter implements IFeedPresenter {
                    view.setSportNewsListData(sportNewsDataList);
 
                    view.hideLoadingIndicator();
+                   view.hideRefreshLayout();
+                   view.showContent();
 
                    if (sportNewsDataList.isEmpty()) view.setEmptyResponseText("Nothing found.");
                    else if(isUpdate) view.updateSportNewsListData(sportNewsDataList);

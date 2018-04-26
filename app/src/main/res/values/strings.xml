@@ -25,4 +25,5 @@
     <string name="image">Image</string>
     <string name="prediction">Prediction</string>
     <string name="predictions">Прогноз</string>
+    <string name="shift">Shift</string>
 </resources>

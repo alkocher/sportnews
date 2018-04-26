@@ -57,7 +57,7 @@ public class DetailsActivity extends AppCompatActivity implements IDetailsView {
     @Override
     public void setTeamsData(String team1, String team2) {
         tvTeam1.setText(team1);
-        tvTeam2.setText(String.format("— %s ", team2));
+        tvTeam2.setText(String.format("—%s ", team2));
     }
 
     @Override

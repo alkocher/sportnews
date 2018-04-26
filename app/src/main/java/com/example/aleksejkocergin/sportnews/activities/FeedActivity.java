@@ -71,28 +71,30 @@ public class FeedActivity extends AppCompatActivity implements IFeedView {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        mRecyclerView.setVisibility(View.GONE);
+        progressFeed.setVisibility(View.VISIBLE);
         switch (item.getItemId()) {
             case R.id.category_football:
-                CATEGORY = "football";
+                CATEGORY = "Football";
                 break;
             case R.id.category_hockey:
-                CATEGORY = "hockey";
+                CATEGORY = "Hockey";
                 break;
             case R.id.category_tennis:
-                CATEGORY = "tennis";
+                CATEGORY = "Tennis";
                 break;
             case R.id.category_basketball:
-                CATEGORY = "basketball";
+                CATEGORY = "Basketball";
                 break;
             case R.id.category_volleyball:
-                CATEGORY = "volleyball";
+                CATEGORY = "Volleyball";
                 break;
             case R.id.category_cybersport:
-                CATEGORY = "cybersport";
+                CATEGORY = "Cybersport";
                 break;
         }
         collapsingToolbar.setTitle(CATEGORY);
-        if (isOnline()) presenter.getSportNewsData(false, CATEGORY);
+        if (isOnline()) presenter.getSportNewsData(false, CATEGORY.toLowerCase());
         return super.onOptionsItemSelected(item);
     }
 
@@ -148,6 +150,11 @@ public class FeedActivity extends AppCompatActivity implements IFeedView {
     @Override
     public void hideRefreshLayout() {
         refreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showContent() {
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     private void initialize() {
